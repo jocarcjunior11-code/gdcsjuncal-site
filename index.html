@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupo Desportivo Centro Social do Juncal — Site Oficial</title>
+  <meta name="description" content="Plataforma oficial do GD Centro Social do Juncal — ténis de mesa, ginásio, equipas, competições e notícias." />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            club: {
+              primary:   '#0F2855',   /* Azul-marinho do equipamento (parte escura) */
+              secondary: '#1D4ED8',   /* Azul royal do equipamento (parte brilhante) */
+              accent:    '#F97316',   /* Laranja do globo do logótipo */
+              light:     '#EFF6FF',   /* Azul muito claro institucional */
+              dark:      '#071A3D',   /* Azul ainda mais escuro para texto forte */
+              red:       '#DC2626'    /* Vermelho desportivo (alertas) */
+            }
+          },
+          fontFamily: {
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+            display: ['"Playfair Display"', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; color: #06182B; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; }
+    .page { display: none; }
+    .page.active { display: block; }
+    html { scroll-behavior: smooth; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #D4AF37;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      background:#0B2545; color:#fff; padding:.75rem 1.25rem; border-radius:.375rem;
+      font-size:.875rem; font-weight:600; transition: background .15s;
+    }
+    .btn-primary:hover { background:#13315C; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      border:1px solid #0B2545; color:#0B2545; background:#fff; padding:.75rem 1.25rem;
+      border-radius:.375rem; font-size:.875rem; font-weight:600; transition: all .15s;
+    }
+    .btn-secondary:hover { background:#0B2545; color:#fff; }
+    .btn-accent {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      background:#D4AF37; color:#0B2545; padding:.75rem 1.25rem; border-radius:.375rem;
+      font-size:.875rem; font-weight:700; transition: filter .15s;
+    }
+    .btn-accent:hover { filter: brightness(1.1); }
+    .card {
+      background:#fff; border:1px solid #e5e7eb; border-radius:.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: box-shadow .15s;
+    }
+    .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .badge {
+      display:inline-flex; align-items:center; padding:.15rem .5rem;
+      font-size:.7rem; font-weight:600; border-radius:9999px;
+    }
+    .section-title {
+      font-size:1.875rem; font-weight:700; color:#0B2545;
+      font-family:'Playfair Display', Georgia, serif;
+    }
+    @media (min-width:768px) { .section-title { font-size:2.25rem; } }
+    .nav-link { font-size:.875rem; font-weight:500; color:#06182B; transition: color .15s; }
+    .nav-link:hover { color:#0B2545; }
+    .nav-link.active-page { color:#D4AF37; font-weight:700; }
+    table.clean { width:100%; font-size:.875rem; }
+    table.clean th { background:#0B2545; color:#fff; padding:.75rem 1rem; text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; }
+    table.clean td { padding:.75rem 1rem; border-bottom:1px solid #f3f4f6; }
+    table.clean tr:hover td { background:#EEF4ED; }
+    .highlight-row td { background:rgba(212,175,55,.15) !important; font-weight:700; }
+  </style>
+</head>
+
+<body class="bg-white">
+
+  <!-- ═════════ HEADER ═════════ -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <!-- Topbar -->
+    <div class="bg-club-primary text-white">
+      <div class="container mx-auto max-w-7xl flex items-center justify-between px-4 py-1.5 text-xs">
+        <span class="hidden sm:inline">Pavilhão Desportivo do Juncal · Praia da Vitória, Açores</span>
+        <div class="flex items-center gap-4">
+          <a href="mailto:gdcsjuncal@gmail.com" class="hover:text-club-accent">gdcsjuncal@gmail.com</a>
+          <a href="https://www.instagram.com/gdcs_juncal" target="_blank" rel="noopener" class="hover:text-club-accent">@gdcs_juncal</a>
+          <a href="#" onclick="showPage('admin'); return false;" class="hover:text-club-accent">Área reservada</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main nav -->
+    <div class="container mx-auto max-w-7xl flex items-center justify-between px-4 py-4">
+      <a href="#" onclick="showPage('home'); return false;" class="flex items-center gap-3">
+        <!-- Logótipo fiel ao original do clube -->
+        <div class="flex-shrink-0">
+          <svg viewBox="0 0 200 110" class="h-16 w-28" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="leftGlobeH" cx="40%" cy="40%" r="65%">
+                <stop offset="0%" stop-color="#FFF0D6"/>
+                <stop offset="55%" stop-color="#FFD08A"/>
+                <stop offset="100%" stop-color="#F59433"/>
+              </radialGradient>
+              <radialGradient id="rightGlobeH" cx="38%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#FFD78A"/>
+                <stop offset="55%" stop-color="#F97316"/>
+                <stop offset="100%" stop-color="#D6352A"/>
+              </radialGradient>
+              <!-- Máscara para confinar o globo esquerdo ao interior do retângulo -->
+              <clipPath id="rectClipH">
+                <rect x="10" y="28" width="160" height="72" rx="4"/>
+              </clipPath>
+            </defs>
+
+            <!-- Preenchimento branco do retângulo -->
+            <rect x="10" y="28" width="160" height="72" rx="4" fill="#FFFCF5"/>
+
+            <!-- Globo esquerdo (CONFINADO ao retângulo, atrás do texto) -->
+            <g clip-path="url(#rectClipH)" opacity="0.6">
+              <circle cx="30" cy="80" r="26" fill="url(#leftGlobeH)"/>
+              <ellipse cx="30" cy="80" rx="26" ry="9" fill="none" stroke="#fff" stroke-width="0.8"/>
+              <ellipse cx="30" cy="80" rx="17" ry="26" fill="none" stroke="#fff" stroke-width="0.5"/>
+              <ellipse cx="30" cy="80" rx="9" ry="26" fill="none" stroke="#fff" stroke-width="0.6"/>
+              <line x1="4" y1="80" x2="56" y2="80" stroke="#fff" stroke-width="0.6"/>
+              <line x1="30" y1="54" x2="30" y2="106" stroke="#fff" stroke-width="0.6"/>
+            </g>
+
+            <!-- Moldura laranja (por cima do globo esquerdo, mas atrás do direito) -->
+            <rect x="10" y="28" width="160" height="72" rx="4" fill="none" stroke="#F4A02E" stroke-width="2.6"/>
+
+            <!-- Texto "centro social" (canto superior esquerdo) -->
+            <text x="44" y="44" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#E8782F" font-weight="500">centro social</text>
+
+            <!-- Texto "juncal" (grande, ao centro) -->
+            <text x="36" y="74" font-family="Georgia, serif" font-style="italic" font-weight="800" font-size="28" fill="#E8782F">juncal</text>
+
+            <!-- Texto "GRUPO DESPORTIVO" (dentro do retângulo, em azul) -->
+            <text x="36" y="88" font-family="Arial, sans-serif" font-weight="900" font-size="11" fill="#1D4ED8" letter-spacing="0.4">GRUPO DESPORTIVO</text>
+
+            <!-- Texto "fundado em 13-2-2003" (DENTRO do retângulo, à direita) -->
+            <text x="102" y="96" font-family="Georgia, serif" font-style="italic" font-size="5" fill="#9CA3AF">fundado em 13-2-2003</text>
+
+            <!-- Globo direito (sai do canto superior direito — em frente da moldura) -->
+            <g>
+              <circle cx="172" cy="24" r="24" fill="url(#rightGlobeH)"/>
+              <ellipse cx="172" cy="24" rx="24" ry="8" fill="none" stroke="#fff" stroke-width="0.9"/>
+              <ellipse cx="172" cy="24" rx="16" ry="24" fill="none" stroke="#fff" stroke-width="0.6"/>
+              <ellipse cx="172" cy="24" rx="8" ry="24" fill="none" stroke="#fff" stroke-width="0.7"/>
+              <line x1="148" y1="24" x2="196" y2="24" stroke="#fff" stroke-width="0.7"/>
+              <line x1="172" y1="0" x2="172" y2="48" stroke="#fff" stroke-width="0.7"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hidden sm:block">
+          <p class="font-display text-base font-bold leading-tight text-club-primary">GDCS Juncal</p>
+          <p class="text-[10px] uppercase tracking-widest text-gray-500">Grupo Desportivo Centro Social do Juncal</p>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-7 lg:flex">
+        <a href="#" onclick="showPage('home'); return false;"        class="nav-link" data-nav="home">Início</a>
+        <a href="#" onclick="showPage('competicoes'); return false;" class="nav-link" data-nav="competicoes">Competições</a>
+        <a href="#" onclick="showPage('jogos'); return false;"       class="nav-link" data-nav="jogos">Jogos</a>
+        <a href="#" onclick="showPage('equipas'); return false;"     class="nav-link" data-nav="equipas">Equipas</a>
+        <a href="#" onclick="showPage('ginasio'); return false;"     class="nav-link" data-nav="ginasio">Ginásio</a>
+        <a href="#" onclick="showPage('noticias'); return false;"    class="nav-link" data-nav="noticias">Notícias</a>
+        <a href="#" onclick="showPage('media'); return false;"       class="nav-link" data-nav="media">Media</a>
+        <a href="#" onclick="showPage('inscricao'); return false;"   class="btn-primary text-xs">Inscreve-te</a>
+      </nav>
+
+      <button onclick="toggleMobileNav()" class="lg:hidden text-club-primary">
+        <i data-lucide="menu" class="h-7 w-7"></i>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-nav" class="hidden border-t border-gray-200 bg-white lg:hidden">
+      <nav class="container mx-auto max-w-7xl flex flex-col px-4 py-3">
+        <a href="#" onclick="showPage('home'); toggleMobileNav(); return false;"        class="border-b border-gray-100 py-3 text-sm font-medium">Início</a>
+        <a href="#" onclick="showPage('competicoes'); toggleMobileNav(); return false;" class="border-b border-gray-100 py-3 text-sm font-medium">Competições</a>
+        <a href="#" onclick="showPage('jogos'); toggleMobileNav(); return false;"       class="border-b border-gray-100 py-3 text-sm font-medium">Jogos</a>
+        <a href="#" onclick="showPage('equipas'); toggleMobileNav(); return false;"     class="border-b border-gray-100 py-3 text-sm font-medium">Equipas</a>
+        <a href="#" onclick="showPage('ginasio'); toggleMobileNav(); return false;"     class="border-b border-gray-100 py-3 text-sm font-medium">Ginásio</a>
+        <a href="#" onclick="showPage('noticias'); toggleMobileNav(); return false;"    class="border-b border-gray-100 py-3 text-sm font-medium">Notícias</a>
+        <a href="#" onclick="showPage('media'); toggleMobileNav(); return false;"       class="border-b border-gray-100 py-3 text-sm font-medium">Media</a>
+        <a href="#" onclick="showPage('inscricao'); toggleMobileNav(); return false;"   class="btn-primary mt-3">Inscreve-te</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: HOMEPAGE ════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-club-primary text-white">
+      <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle at 20% 30%, rgba(212,175,55,.3), transparent 50%), radial-gradient(circle at 80% 70%, rgba(19,49,92,.6), transparent 60%);"></div>
+      <div class="container relative mx-auto max-w-7xl grid gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+        <div class="flex flex-col justify-center">
+          <span class="eyebrow">Tradição, mérito e comunidade</span>
+          <h1 class="mt-3 font-display text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+            Grupo Desportivo Centro Social do Juncal
+          </h1>
+          <p class="mt-5 max-w-xl text-lg text-white/80">
+            Tradição na modalidade. Comunidade no clube. Ténis de mesa de competição, formação para todas as idades, e um ginásio para a saúde de todos.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-accent">
+              Junta-te ao Ténis de Mesa <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+            <a href="#" onclick="showPage('ginasio'); return false;" class="btn-secondary border-white text-white hover:bg-white hover:text-club-primary">
+              Inscreve-te no Ginásio
+            </a>
+          </div>
+        </div>
+
+        <!-- Próximo jogo -->
+        <div class="rounded-xl bg-white text-club-dark shadow-2xl">
+          <div class="rounded-t-xl bg-club-accent px-5 py-2 text-xs font-semibold uppercase tracking-widest text-club-primary">
+            Próximo jogo
+          </div>
+          <div class="p-6">
+            <p class="text-xs uppercase tracking-widest text-gray-400">Pré-época 2026/2027 · 1ª Divisão Fem.</p>
+            <div class="mt-4 grid grid-cols-3 items-center gap-2">
+              <div class="text-center">
+                <p class="font-display text-base font-bold text-club-primary">GDCS Juncal</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Casa</p>
+              </div>
+              <p class="text-center font-display text-3xl font-bold text-gray-300">VS</p>
+              <div class="text-center">
+                <p class="font-display text-base font-bold text-club-primary">A anunciar</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Calendário oficial</p>
+              </div>
+            </div>
+            <div class="mt-6 space-y-1 text-sm text-gray-600">
+              <p class="flex items-center gap-2"><i data-lucide="calendar" class="h-4 w-4 text-club-accent"></i> Outubro de 2026 (a confirmar)</p>
+              <p class="pl-6">📍 Pavilhão Desportivo do Juncal</p>
+            </div>
+            <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="btn-primary mt-6 w-full">
+              Ver detalhes <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAIXA DE CONQUISTAS -->
+    <section class="bg-club-dark text-white">
+      <div class="container mx-auto max-w-7xl px-4 py-6">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div class="flex items-center gap-3">
+            <i data-lucide="trophy" class="h-7 w-7 text-club-accent flex-shrink-0"></i>
+            <div>
+              <p class="font-display text-2xl font-bold text-club-accent">3×</p>
+              <p class="text-[10px] uppercase tracking-widest text-white/70">Campeão Nacional<br/>1ª Div. Feminina</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="award" class="h-7 w-7 text-club-accent flex-shrink-0"></i>
+            <div>
+              <p class="font-display text-2xl font-bold text-club-accent">1×</p>
+              <p class="text-[10px] uppercase tracking-widest text-white/70">Taça de Portugal</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="medal" class="h-7 w-7 text-club-accent flex-shrink-0"></i>
+            <div>
+              <p class="font-display text-2xl font-bold text-club-accent">2×</p>
+              <p class="text-[10px] uppercase tracking-widest text-white/70">Supertaça</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="sparkles" class="h-7 w-7 text-club-accent flex-shrink-0"></i>
+            <div>
+              <p class="font-display text-base font-bold text-club-accent">Bicampeãs 2025/26</p>
+              <p class="text-[10px] uppercase tracking-widest text-white/70">1ª Div. Nacional Fem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACESSOS RÁPIDOS -->
+    <section class="border-b border-gray-100 bg-club-light/40">
+      <div class="container mx-auto max-w-7xl grid grid-cols-2 gap-4 px-4 py-8 md:grid-cols-4">
+        <a href="#" onclick="showPage('competicoes'); return false;" class="flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 transition hover:border-club-accent hover:shadow-md">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-primary text-white"><i data-lucide="trophy" class="h-5 w-5"></i></span>
+          <span class="font-semibold">Competições</span>
+        </a>
+        <a href="#" onclick="showPage('jogos'); return false;" class="flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 transition hover:border-club-accent hover:shadow-md">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-primary text-white"><i data-lucide="calendar" class="h-5 w-5"></i></span>
+          <span class="font-semibold">Jogos</span>
+        </a>
+        <a href="#" onclick="showPage('equipas'); return false;" class="flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 transition hover:border-club-accent hover:shadow-md">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-primary text-white"><i data-lucide="users" class="h-5 w-5"></i></span>
+          <span class="font-semibold">Equipas</span>
+        </a>
+        <a href="#" onclick="showPage('ginasio'); return false;" class="flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 transition hover:border-club-accent hover:shadow-md">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-primary text-white"><i data-lucide="dumbbell" class="h-5 w-5"></i></span>
+          <span class="font-semibold">Ginásio</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ÚLTIMO RESULTADO + CLASSIFICAÇÃO -->
+    <section class="py-14">
+      <div class="container mx-auto max-w-7xl grid gap-8 px-4 lg:grid-cols-2">
+        <div>
+          <span class="eyebrow">Resultado mais recente</span>
+          <h2 class="section-title mt-2">Último jogo</h2>
+          <div class="card mt-5 overflow-hidden cursor-pointer" onclick="showPage('jogo-detalhe')">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold uppercase tracking-wide text-club-primary">🏆 Play-Off Final · 2ª mão</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Título conquistado</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center">
+                <p class="text-sm font-semibold">GDCS Juncal</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Casa</p>
+              </div>
+              <p class="text-center font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 2</p>
+              <div class="text-center">
+                <p class="text-sm font-semibold">CTM Mirandela</p>
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Fora</p>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 rounded-md bg-club-light/60 p-4 text-sm italic text-gray-700">
+            "Gabriela Feher, Tatiana Garnova, Júlia Leal e Caetana Soares fecharam o play-off final em casa e seguraram o bicampeonato nacional da 1ª Divisão Feminina. Uma temporada inesquecível para o clube." — Direção
+          </p>
+        </div>
+
+        <div>
+          <span class="eyebrow">1ª Divisão Nacional Feminina · 2025/2026</span>
+          <h2 class="section-title mt-2">Classificação final</h2>
+          <div class="mt-5 overflow-hidden rounded-lg border border-gray-200">
+            <table class="clean">
+              <thead><tr><th>#</th><th>Equipa</th><th class="text-center">J</th><th class="text-center">V</th><th class="text-center">D</th><th class="text-center">Pts</th></tr></thead>
+              <tbody>
+                <tr class="highlight-row"><td>1 🏆</td><td>GDCS JUNCAL</td><td class="text-center">14</td><td class="text-center">14</td><td class="text-center">0</td><td class="text-center font-bold">56</td></tr>
+                <tr><td>2</td><td>CTM Mirandela</td><td class="text-center">14</td><td class="text-center">11</td><td class="text-center">3</td><td class="text-center font-bold">48</td></tr>
+                <tr><td>3</td><td>Sporting CP</td><td class="text-center">14</td><td class="text-center">9</td><td class="text-center">5</td><td class="text-center font-bold">41</td></tr>
+                <tr><td>4</td><td>U. Sebastianense FC</td><td class="text-center">14</td><td class="text-center">9</td><td class="text-center">5</td><td class="text-center font-bold">38</td></tr>
+                <tr><td>5</td><td>Ala Nun' Álvares</td><td class="text-center">14</td><td class="text-center">4</td><td class="text-center">10</td><td class="text-center font-bold">29</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-xs text-club-accent font-semibold">⭐ Época invicta: 14 vitórias em 14 jornadas + Bicampeãs no play-off final</p>
+          <a href="#" onclick="showPage('competicoes'); return false;" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-club-primary hover:text-club-accent">
+            Ver classificação completa <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA GINÁSIO -->
+    <section class="bg-club-primary text-white">
+      <div class="container mx-auto max-w-7xl grid items-center gap-8 px-4 py-14 md:grid-cols-2">
+        <div>
+          <span class="eyebrow">Ginásio GD Juncal</span>
+          <h2 class="mt-2 font-display text-3xl font-bold md:text-4xl">Treina onde a comunidade do clube treina.</h2>
+          <p class="mt-3 max-w-xl text-white/80">
+            Equipamentos novos, PTs certificados, aulas semanais e horários alargados. Mensalidade desde <strong class="text-club-accent">€18 / mês</strong>.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#" onclick="showPage('ginasio'); return false;" class="btn-accent">Ver planos e horários</a>
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-secondary border-white text-white hover:bg-white hover:text-club-primary">Inscreve-te agora</a>
+          </div>
+        </div>
+        <div class="hidden md:grid grid-cols-2 gap-3">
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-3xl font-bold text-club-accent">07h</p><p class="mt-1 text-sm text-white/70">Aberto desde as</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-3xl font-bold text-club-accent">22h</p><p class="mt-1 text-sm text-white/70">Até às</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-3xl font-bold text-club-accent">3 PTs</p><p class="mt-1 text-sm text-white/70">Disponíveis</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-3xl font-bold text-club-accent">7</p><p class="mt-1 text-sm text-white/70">Aulas semanais</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTÍCIAS -->
+    <section class="py-14">
+      <div class="container mx-auto max-w-7xl px-4">
+        <div class="flex items-end justify-between">
+          <div>
+            <span class="eyebrow">Atualidade</span>
+            <h2 class="section-title mt-2">Últimas notícias</h2>
+          </div>
+          <a href="#" onclick="showPage('noticias'); return false;" class="text-sm font-semibold text-club-primary hover:text-club-accent">Ver todas →</a>
+        </div>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-3">
+          <!-- Featured: o título maior do clube -->
+          <a href="#" onclick="showPage('noticias'); return false;" class="lg:col-span-2 lg:row-span-2 group relative block overflow-hidden rounded-xl">
+            <div class="aspect-[16/9] relative bg-gradient-to-br from-club-primary via-club-secondary to-club-primary flex items-center justify-center">
+              <div class="text-center text-club-accent">
+                <i data-lucide="trophy" class="h-24 w-24 mx-auto"></i>
+                <p class="mt-2 text-sm font-bold tracking-widest uppercase text-white/90">Foto da equipa campeã</p>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <span class="eyebrow">🏆 Conquista histórica</span>
+              <h3 class="mt-2 font-display text-2xl md:text-3xl font-bold leading-tight">Bicampeãs Nacionais da 1ª Divisão Feminina!</h3>
+              <p class="mt-2 max-w-2xl text-sm text-white/80">Gabriela Feher, Tatiana Garnova, Júlia Leal e Caetana Soares, orientadas pelo treinador Luís Sousa, escrevem mais uma página dourada do clube.</p>
+              <p class="mt-3 text-xs text-white/60">26 de abril de 2026</p>
+            </div>
+          </a>
+
+          <a href="#" onclick="showPage('noticias'); return false;" class="card block overflow-hidden">
+            <div class="aspect-[16/9] relative bg-gradient-to-br from-club-secondary to-club-primary flex items-center justify-center">
+              <i data-lucide="users" class="h-12 w-12 text-white/40"></i>
+            </div>
+            <div class="p-5">
+              <span class="eyebrow">Formação</span>
+              <h3 class="mt-2 text-lg font-bold text-club-primary">Inscrições abertas para a Escolinha Sub-9</h3>
+              <p class="mt-2 text-sm text-gray-600">Pais e encarregados podem inscrever crianças entre os 5 e 9 anos.</p>
+              <p class="mt-3 text-xs text-gray-400">10 de maio de 2026</p>
+            </div>
+          </a>
+
+          <a href="#" onclick="showPage('noticias'); return false;" class="card block overflow-hidden">
+            <div class="aspect-[16/9] relative bg-gradient-to-br from-club-accent to-yellow-700 flex items-center justify-center">
+              <i data-lucide="dumbbell" class="h-12 w-12 text-club-primary/60"></i>
+            </div>
+            <div class="p-5">
+              <span class="eyebrow">Ginásio</span>
+              <h3 class="mt-2 text-lg font-bold text-club-primary">Ginásio do clube recebe novos equipamentos</h3>
+              <p class="mt-2 text-sm text-gray-600">Renovação inclui cardio, área funcional e zona de pesos livres.</p>
+              <p class="mt-3 text-xs text-gray-400">2 de maio de 2026</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="border-t border-gray-100 bg-club-light/60 py-14">
+      <div class="container mx-auto max-w-7xl grid items-center gap-8 px-4 md:grid-cols-2">
+        <div>
+          <h2 class="section-title">Pronto para fazer parte?</h2>
+          <p class="mt-3 max-w-xl text-gray-600">O clube cresce com cada nova inscrição. Junta-te à secção de ténis de mesa, ao ginásio, ou simplesmente diz olá à direção.</p>
+        </div>
+        <div class="flex flex-wrap justify-end gap-3">
+          <a href="#" onclick="showPage('inscricao'); return false;" class="btn-primary">Ténis de Mesa</a>
+          <a href="#" onclick="showPage('ginasio'); return false;" class="btn-secondary">Ginásio</a>
+          <a href="mailto:geral@gdjuncal.pt" class="btn-secondary">Contactar</a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: COMPETIÇÕES ═════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-competicoes" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-10">
+        <span class="eyebrow">Ténis de Mesa</span>
+        <h1 class="section-title mt-2">Competições</h1>
+        <p class="mt-3 max-w-2xl text-gray-600">Acompanha todas as competições onde o GD Juncal está presente — seniores masculinos, seniores femininos e formação.</p>
+      </header>
+
+      <!-- FEMININOS -->
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Femininos</h2>
+
+        <div class="card p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <p class="text-xs uppercase tracking-widest text-gray-400">Temporada 2025/2026 · Fase regular</p>
+            <span class="badge bg-club-accent/20 text-club-primary">Escalão principal</span>
+            <span class="badge bg-emerald-100 text-emerald-700">🏆 Campeãs nacionais</span>
+          </div>
+          <h3 class="mt-1 font-display text-xl font-bold text-club-primary">1ª Divisão Nacional Feminina</h3>
+          <p class="mt-1 text-sm text-gray-600">Principal competição feminina de ténis de mesa em Portugal. O GDCS Juncal terminou a fase regular <strong>invicto (14V em 14 jornadas)</strong> e conquistou o título nacional no play-off final frente ao CTM Mirandela.</p>
+
+          <div class="mt-6 overflow-x-auto rounded-lg border border-gray-200">
+            <table class="clean">
+              <thead><tr><th>#</th><th>Equipa</th><th class="text-center">J</th><th class="text-center">V</th><th class="text-center">D</th><th class="text-center">Pts</th></tr></thead>
+              <tbody>
+                <tr class="highlight-row"><td>1 🏆</td><td>GDCS JUNCAL</td><td class="text-center">14</td><td class="text-center">14</td><td class="text-center">0</td><td class="text-center font-bold">56</td></tr>
+                <tr><td>2</td><td>CTM Mirandela</td><td class="text-center">14</td><td class="text-center">11</td><td class="text-center">3</td><td class="text-center font-bold">48</td></tr>
+                <tr><td>3</td><td>Sporting CP</td><td class="text-center">14</td><td class="text-center">9</td><td class="text-center">5</td><td class="text-center font-bold">41</td></tr>
+                <tr><td>4</td><td>U. Sebastianense FC</td><td class="text-center">14</td><td class="text-center">9</td><td class="text-center">5</td><td class="text-center font-bold">38</td></tr>
+                <tr><td>5</td><td>Ala Nun' Álvares</td><td class="text-center">14</td><td class="text-center">4</td><td class="text-center">10</td><td class="text-center font-bold">29</td></tr>
+                <tr><td>6</td><td>CTM Ponta do Sol</td><td class="text-center">14</td><td class="text-center">5</td><td class="text-center">9</td><td class="text-center font-bold">27</td></tr>
+                <tr><td>7</td><td>ADC Ponta do Pargo</td><td class="text-center">14</td><td class="text-center">4</td><td class="text-center">10</td><td class="text-center font-bold">24</td></tr>
+                <tr><td>8</td><td>CA Madalena</td><td class="text-center">14</td><td class="text-center">0</td><td class="text-center">14</td><td class="text-center font-bold">1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-xs text-gray-400">J — Jogos · V — Vitórias · D — Derrotas · Pts — Pontos · Fonte: <a href="https://resultados.fptm.pt/pt/portugal/nationals/423" target="_blank" rel="noopener" class="text-club-primary hover:text-club-accent">FPTM</a></p>
+
+          <!-- Play-offs -->
+          <h4 class="mt-8 mb-3 font-display text-lg font-bold text-club-primary">Play-Off (Meia-Final + Final)</h4>
+          <div class="space-y-3">
+            <div class="rounded-lg border border-gray-200 p-4">
+              <p class="text-[11px] uppercase tracking-widest text-gray-400">Meia-Final · à melhor de 3</p>
+              <p class="mt-1 text-sm font-semibold text-club-primary">GDCS Juncal venceu U. Sebastianense FC por 2-1</p>
+              <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                <li>1.ª mão (28 mar 2026): U. Sebastianense FC <strong>3-2</strong> GDCS Juncal</li>
+                <li>2.ª mão (11 abr 2026): GDCS Juncal <strong>3-2</strong> U. Sebastianense FC</li>
+                <li>3.ª mão (12 abr 2026): GDCS Juncal <strong>3-0</strong> U. Sebastianense FC</li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-club-accent bg-club-accent/5 p-4">
+              <p class="text-[11px] uppercase tracking-widest text-club-accent font-bold">🏆 Final · Título Nacional</p>
+              <p class="mt-1 text-sm font-semibold text-club-primary">GDCS Juncal Campeão Nacional Feminino — venceu CTM Mirandela</p>
+              <ul class="mt-2 space-y-1 text-xs text-gray-700">
+                <li>1.ª mão (21 abr 2026): CTM Mirandela <strong>0-3</strong> GDCS Juncal</li>
+                <li>2.ª mão (25 abr 2026): GDCS Juncal <strong>3-2</strong> CTM Mirandela</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MASCULINOS -->
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Masculinos</h2>
+
+        <div class="card mb-6 p-6">
+          <div class="flex items-center gap-2">
+            <p class="text-xs uppercase tracking-widest text-gray-400">Temporada 2025/2026</p>
+            <span class="badge bg-gray-200 text-gray-700">2º escalão nacional</span>
+          </div>
+          <h3 class="mt-1 font-display text-xl font-bold text-club-primary">Divisão de Honra Masculina</h3>
+          <p class="mt-1 text-sm text-gray-600">Segunda competição masculina nacional, abaixo da 1ª Divisão Nacional. Os resultados oficiais e classificação serão atualizados a partir do painel admin assim que a direção os introduzir.</p>
+
+          <div class="mt-6 rounded-lg bg-club-light/40 p-5 text-sm text-gray-600">
+            <p class="font-semibold text-club-primary mb-2">⚙️ A inserir pelo painel admin</p>
+            <p>Os dados específicos do calendário masculino e classificação são facilmente carregados na área reservada da direção. Diz-me se preferes que vá buscá-los à federação também.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMAÇÃO -->
+      <section>
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Formação</h2>
+        <div class="card p-6">
+          <p class="text-xs uppercase tracking-widest text-gray-400">Temporada 2025/2026</p>
+          <h3 class="mt-1 font-display text-xl font-bold text-club-primary">Campeonato Distrital Sub-15</h3>
+          <p class="mt-1 text-sm text-gray-600">Campeonato distrital de formação misto.</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: JOGOS ═══════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-jogos" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-10">
+        <span class="eyebrow">Calendário desportivo</span>
+        <h1 class="section-title mt-2">Jogos</h1>
+        <p class="mt-3 max-w-2xl text-gray-600">Próximos jogos e resultados das equipas do GD Juncal em todas as competições.</p>
+      </header>
+
+      <!-- Próximos -->
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Próxima época</h2>
+        <div class="card p-6 bg-club-light/40">
+          <p class="text-sm text-gray-700">
+            O calendário oficial da época <strong>2026/2027</strong> ainda não foi publicado pela federação.
+            Assim que estiver disponível, a direção carrega-o no painel admin e os jogos aparecem aqui automaticamente.
+          </p>
+        </div>
+      </section>
+
+      <!-- Últimos resultados REAIS -->
+      <section>
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Resultados oficiais 2025/2026 · 1ª Divisão Feminina</h2>
+        <p class="mb-5 text-sm text-gray-600">14 jornadas. 14 vitórias. Sem qualquer derrota. Mais 5 vitórias nos play-offs até ao bicampeonato nacional.</p>
+
+        <div class="grid gap-4 md:grid-cols-2">
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden ring-2 ring-club-accent/60">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-accent/15 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">🏆 Play-Off FINAL · 2.ª mão · TÍTULO</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Bicampeãs!</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 2</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">CTM Mirandela</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">25 abr 2026 · Pavilhão Desportivo do Juncal</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">🏆 Play-Off FINAL · 1.ª mão</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">CTM Mirandela</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">0 <span class="text-gray-300">—</span> 3</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">21 abr 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">🏆 Play-Off Meia-Final · 3.ª mão</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 0</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">U. Sebastianense FC</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">12 abr 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">🏆 Play-Off Meia-Final · 2.ª mão</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 2</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">U. Sebastianense FC</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">11 abr 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">1ª Divisão Fem. · J14</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 0</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">U. Sebastianense FC</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">7 mar 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">1ª Divisão Fem. · J13</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 1</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">Ala Nun' Álvares</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">22 fev 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">1ª Divisão Fem. · J12</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">3 <span class="text-gray-300">—</span> 0</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">CTM Mirandela</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">21 fev 2026</div>
+          </a>
+
+          <a href="#" onclick="showPage('jogo-detalhe'); return false;" class="card block overflow-hidden">
+            <div class="flex items-center justify-between border-b border-gray-100 bg-club-light/40 px-4 py-2 text-xs">
+              <span class="font-semibold text-club-primary">1ª Divisão Fem. · J11</span>
+              <span class="badge bg-emerald-100 text-emerald-700">Vitória</span>
+            </div>
+            <div class="grid grid-cols-3 items-center gap-2 p-5">
+              <div class="text-center"><p class="text-sm font-semibold">Sporting CP</p></div>
+              <div class="text-center"><p class="font-display text-3xl font-bold text-club-primary">1 <span class="text-gray-300">—</span> 3</p></div>
+              <div class="text-center"><p class="text-sm font-semibold">GDCS Juncal</p></div>
+            </div>
+            <div class="border-t border-gray-100 px-4 py-2 text-xs text-gray-500">8 fev 2026 · J11 (jogada a 6 dez 2025)</div>
+          </a>
+        </div>
+
+        <p class="mt-6 text-xs text-gray-500">
+          Dados oficiais da Federação Portuguesa de Ténis de Mesa.
+          Ver calendário completo em <a href="https://resultados.fptm.pt/pt/portugal/nationals/423" target="_blank" rel="noopener" class="text-club-primary hover:text-club-accent underline">resultados.fptm.pt</a>.
+        </p>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: JOGO DETALHE ════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-jogo-detalhe" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <a href="#" onclick="showPage('jogos'); return false;" class="text-sm text-gray-500 hover:text-club-primary">← Jogos</a>
+
+      <header class="mt-3 mb-10 rounded-xl bg-gradient-to-br from-club-primary via-club-secondary to-club-primary p-8 text-white">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-club-accent">
+          <span class="flex items-center gap-1">🏆 1ª Divisão Nacional Feminina</span>
+          <span>Play-Off Final · 2.ª mão</span>
+          <span class="ml-auto badge bg-club-accent text-club-primary">Título Nacional</span>
+        </div>
+        <div class="mt-6 grid grid-cols-3 items-center gap-4">
+          <div class="text-center">
+            <p class="font-display text-xl md:text-2xl font-bold">GDCS Juncal</p>
+            <p class="mt-1 text-[10px] uppercase tracking-widest text-white/60">Casa</p>
+          </div>
+          <div class="text-center">
+            <p class="font-display text-5xl md:text-6xl font-bold text-club-accent">3 <span class="text-white/40">—</span> 2</p>
+          </div>
+          <div class="text-center">
+            <p class="font-display text-xl md:text-2xl font-bold">CTM Mirandela</p>
+            <p class="mt-1 text-[10px] uppercase tracking-widest text-white/60">Fora</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/80">
+          <span class="flex items-center gap-2"><i data-lucide="calendar" class="h-4 w-4 text-club-accent"></i> Sáb, 25 abril 2026 · 15h00</span>
+          <span class="flex items-center gap-2"><i data-lucide="map-pin" class="h-4 w-4 text-club-accent"></i> Pavilhão Desportivo do Juncal</span>
+        </div>
+      </header>
+
+      <section class="mb-12">
+        <h2 class="mb-3 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Resumo do jogo</h2>
+        <p class="rounded-md bg-club-light/60 p-5 text-gray-700 leading-relaxed">
+          <strong>BICAMPEÃS NACIONAIS!</strong> Há conquistas que vão muito além de um título — e este bicampeonato da 1ª Divisão Feminina é uma delas. É a prova viva de que o trabalho, a união e a paixão conseguem transformar sonhos em história.
+          <br/><br/>
+          O GDCS Juncal escreveu mais uma página dourada, construída com alma, sacrifício e uma enorme crença. As nossas campeãs — Gabriela Feher, Tatiana Garnova, Júlia Leal e Caetana Soares — foram incansáveis, corajosas e gigantes dentro e fora da mesa.
+          <br/><br/>
+          Por trás desta caminhada está também um líder que nunca deixou de acreditar: o treinador Luís Sousa, cuja entrega, conhecimento e espírito inspirador foram fundamentais para alcançar este feito memorável.
+        </p>
+        <p class="mt-3 text-xs text-gray-500 italic">Texto adaptado da publicação oficial do clube de 26 de abril de 2026.</p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Resultado eliminatório</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          <div class="card p-5">
+            <p class="text-[11px] uppercase tracking-widest text-gray-400">1.ª mão · 21 abril 2026 · em Mirandela</p>
+            <p class="mt-2 font-display text-2xl font-bold text-club-primary">CTM Mirandela 0 — 3 GDCS Juncal</p>
+            <p class="mt-1 text-xs text-gray-500">Vantagem clara à partida na deslocação a Mirandela.</p>
+          </div>
+          <div class="card p-5 ring-2 ring-club-accent">
+            <p class="text-[11px] uppercase tracking-widest text-club-accent font-bold">2.ª mão · 25 abril 2026 · em casa</p>
+            <p class="mt-2 font-display text-2xl font-bold text-club-primary">GDCS Juncal 3 — 2 CTM Mirandela</p>
+            <p class="mt-1 text-xs text-gray-500">🏆 Bicampeonato selado em casa, frente aos sócios.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Atletas em campo</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          <div class="card p-4 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-accent/20 text-club-primary font-display font-bold">GF</span>
+            <div><p class="font-semibold text-club-primary">Gabriela Feher</p><p class="text-xs text-gray-500">Atleta principal</p></div>
+          </div>
+          <div class="card p-4 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-accent/20 text-club-primary font-display font-bold">TG</span>
+            <div><p class="font-semibold text-club-primary">Tatiana Garnova</p><p class="text-xs text-gray-500">Atleta principal</p></div>
+          </div>
+          <div class="card p-4 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-accent/20 text-club-primary font-display font-bold">JL</span>
+            <div><p class="font-semibold text-club-primary">Júlia Leal</p><p class="text-xs text-gray-500">Internacional · Campeã Sub-19</p></div>
+          </div>
+          <div class="card p-4 flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-accent/20 text-club-primary font-display font-bold">CS</span>
+            <div><p class="font-semibold text-club-primary">Caetana Soares</p><p class="text-xs text-gray-500">Formação · Seniores</p></div>
+          </div>
+          <div class="card p-4 flex items-center gap-3 md:col-span-2 bg-club-light/40">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="user-check" class="h-5 w-5"></i></span>
+            <div><p class="font-semibold text-club-primary">Treinador: Luís Sousa</p><p class="text-xs text-gray-500">Arquitecto do bicampeonato</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Galeria do jogo</h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <div class="aspect-video rounded-lg bg-gradient-to-br from-club-primary to-club-secondary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-video rounded-lg bg-gradient-to-br from-club-secondary to-club-primary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-video rounded-lg bg-gradient-to-br from-club-accent to-yellow-700 flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-club-primary/40"></i></div>
+        </div>
+        <p class="mt-3 text-xs text-gray-400">As fotos reais aparecem aqui quando a direção fizer upload no painel admin.</p>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: EQUIPAS ═════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-equipas" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-10">
+        <span class="eyebrow">Modalidade Ténis de Mesa</span>
+        <h1 class="section-title mt-2">As nossas equipas</h1>
+        <p class="mt-3 max-w-2xl text-gray-600">Desde a Escolinha aos Seniores, o clube acompanha cada atleta ao longo do seu percurso.</p>
+      </header>
+
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Seniores</h2>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div class="card p-6 ring-2 ring-club-accent/50">
+            <div class="flex items-start justify-between">
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="trophy" class="h-5 w-5"></i></span>
+              <span class="badge bg-emerald-100 text-emerald-700">🏆 Bicampeãs 2025/26</span>
+            </div>
+            <h3 class="mt-4 font-bold text-club-primary text-lg">Seniores Femininos</h3>
+            <p class="mt-1 text-xs uppercase tracking-widest text-gray-500">Sénior · Feminino</p>
+            <p class="mt-3 text-sm text-gray-600"><strong>Treinador:</strong> Luís Sousa</p>
+            <p class="mt-1 text-sm text-gray-600"><strong>Compete em:</strong> 1ª Divisão Nacional</p>
+
+            <p class="mt-4 text-xs uppercase tracking-widest text-club-accent font-bold">Plantel</p>
+            <ul class="mt-2 space-y-1 text-sm text-gray-700">
+              <li>• Gabriela Feher</li>
+              <li>• Tatiana Garnova</li>
+              <li>• Júlia Leal <span class="text-club-accent text-xs">⭐ Internacional · Campeã Sub-19</span></li>
+              <li>• Caetana Soares</li>
+            </ul>
+            <p class="mt-3 text-xs italic text-gray-500">14 vitórias em 14 jornadas + vencedoras do play-off final.</p>
+          </div>
+
+          <div class="card p-6">
+            <div class="flex items-start justify-between">
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="users" class="h-5 w-5"></i></span>
+              <span class="badge bg-gray-200 text-gray-700">Divisão de Honra</span>
+            </div>
+            <h3 class="mt-4 font-bold text-club-primary text-lg">Seniores Masculinos</h3>
+            <p class="mt-1 text-xs uppercase tracking-widest text-gray-500">Sénior · Masculino</p>
+            <p class="mt-3 text-sm text-gray-600"><strong>Compete em:</strong> Divisão de Honra Masculina</p>
+            <p class="mt-2 text-xs italic text-gray-500">Plantel e treinador a confirmar na próxima época. A informação aparece aqui assim que for carregada no painel admin.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Destaque atleta -->
+      <section class="mb-12 rounded-xl bg-gradient-to-br from-club-primary to-club-secondary p-8 text-white">
+        <div class="grid items-center gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <span class="eyebrow text-club-accent">Atleta em destaque</span>
+            <h3 class="mt-2 font-display text-3xl font-bold">Júlia Leal</h3>
+            <p class="mt-1 text-sm text-white/70">Internacional A · Selecionada para o Campeonato do Mundo de Equipas em Londres 2026 e para o WTT Feeder Prishtina (Kosovo)</p>
+            <ul class="mt-4 space-y-1 text-sm text-white/85">
+              <li>🥇 Campeã Nacional Sub-19 — junho 2025</li>
+              <li>🏆 Bicampeã Nacional 1ª Divisão Feminina com o GDCS Juncal</li>
+              <li>🏅 Pares mistos Sub-19: 3.º lugar com Carlos Gonçalves (CTM Vila Real)</li>
+              <li>🏅 Pares mistos Sub-17: 1.º lugar com Carlos Gonçalves</li>
+              <li>🌍 Convocatória WTT Feeder Prishtina · 22–31 maio 2026</li>
+            </ul>
+          </div>
+          <div class="rounded-lg bg-white/5 p-6 text-center">
+            <i data-lucide="medal" class="h-16 w-16 mx-auto text-club-accent"></i>
+            <p class="mt-3 text-xs uppercase tracking-widest text-club-accent">Voto de louvor</p>
+            <p class="mt-1 text-xs text-white/80">Assembleia Municipal da Praia da Vitória · junho 2025</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Formação</h2>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div class="card p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="users" class="h-5 w-5"></i></span>
+            <h3 class="mt-4 font-bold text-club-primary">Sub-19 / Sub-17</h3>
+            <p class="mt-1 text-xs uppercase tracking-widest text-gray-500">Misto</p>
+            <p class="mt-3 text-sm text-gray-600">Atletas em transição para os seniores, com participações em Campeonatos Nacionais de Pares.</p>
+            <p class="mt-2 text-xs text-club-accent font-semibold">⭐ Caetana Soares · Vice-campeã Pares Fem. Sub-19 e Sub-17</p>
+          </div>
+          <div class="card p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="users" class="h-5 w-5"></i></span>
+            <h3 class="mt-4 font-bold text-club-primary">Sub-15 / Sub-13</h3>
+            <p class="mt-1 text-xs uppercase tracking-widest text-gray-500">Misto</p>
+            <p class="mt-3 text-sm text-gray-600">Atletas em formação técnica e competitiva.</p>
+            <p class="mt-2 text-xs text-club-accent font-semibold">⭐ Carolina Sousa · Medalha Pares Fem. Sub-13</p>
+          </div>
+          <div class="card p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="users" class="h-5 w-5"></i></span>
+            <h3 class="mt-4 font-bold text-club-primary">Escolinha</h3>
+            <p class="mt-1 text-xs uppercase tracking-widest text-gray-500">Misto · Crianças</p>
+            <p class="mt-3 text-sm text-gray-600">Primeira aprendizagem do ténis de mesa, com foco no divertimento e nos valores do desporto.</p>
+            <p class="mt-2 text-xs text-club-accent font-semibold">⭐ Atletas do mês de abril 2026: Rodrigo e Leo (assiduidade 100%)</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: GINÁSIO ═════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-ginasio" class="page">
+    <section class="bg-club-primary text-white">
+      <div class="container mx-auto max-w-7xl grid items-center gap-10 px-4 py-16 md:grid-cols-2">
+        <div>
+          <span class="eyebrow">Ginásio GD Juncal</span>
+          <h1 class="mt-2 font-display text-4xl md:text-5xl font-bold">Treina em casa do clube.</h1>
+          <p class="mt-4 max-w-xl text-white/80">Equipamento renovado, três personal trainers certificados, aulas semanais e horários alargados para encaixar na tua rotina.</p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-accent">Inscreve-te agora</a>
+            <a href="tel:+351000000000" class="btn-secondary border-white text-white hover:bg-white hover:text-club-primary"><i data-lucide="phone" class="h-4 w-4"></i> +351 000 000 000</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-2xl font-bold text-club-accent">€25 / mês</p><p class="mt-1 text-sm text-white/70">Plano sócio</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-2xl font-bold text-club-accent">€18 / mês</p><p class="mt-1 text-sm text-white/70">Plano estudante</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-2xl font-bold text-club-accent">€40 / mês</p><p class="mt-1 text-sm text-white/70">Plano família</p></div>
+          <div class="rounded-lg bg-white/5 p-5"><p class="font-display text-2xl font-bold text-club-accent">€220 / ano</p><p class="mt-1 text-sm text-white/70">Plano anual</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horários -->
+    <section class="border-b border-gray-100 bg-club-light/40">
+      <div class="container mx-auto max-w-7xl grid gap-4 px-4 py-8 md:grid-cols-3">
+        <div class="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm">
+          <i data-lucide="clock" class="h-6 w-6 text-club-accent"></i>
+          <div><p class="text-xs uppercase tracking-widest text-gray-500">Dias úteis</p><p class="font-semibold text-club-primary">07h00 — 22h00</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm">
+          <i data-lucide="clock" class="h-6 w-6 text-club-accent"></i>
+          <div><p class="text-xs uppercase tracking-widest text-gray-500">Sábado</p><p class="font-semibold text-club-primary">09h00 — 20h00</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm">
+          <i data-lucide="clock" class="h-6 w-6 text-club-accent"></i>
+          <div><p class="text-xs uppercase tracking-widest text-gray-500">Domingo</p><p class="font-semibold text-club-primary">09h00 — 13h00</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Planos -->
+    <section class="py-14">
+      <div class="container mx-auto max-w-7xl px-4">
+        <span class="eyebrow">Mensalidades simples</span>
+        <h2 class="section-title mt-2">Planos para todos</h2>
+        <p class="mt-3 max-w-2xl text-gray-600">Sem letras pequenas e sem fidelizações forçadas. Escolhe o que faz sentido para ti.</p>
+
+        <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div class="card relative p-6 border-club-accent ring-2 ring-club-accent/40">
+            <span class="absolute -top-3 left-6 rounded-full bg-club-accent px-3 py-0.5 text-[11px] font-semibold uppercase text-club-primary">Mais escolhido</span>
+            <h3 class="font-display text-lg font-bold text-club-primary">Plano Sócio</h3>
+            <p class="mt-3 font-display text-3xl font-bold text-club-primary">€25.00 <span class="text-sm font-normal text-gray-500">/ mês</span></p>
+            <p class="mt-2 text-sm text-gray-600">Acesso livre ao ginásio em todos os horários para sócios do clube.</p>
+            <ul class="mt-5 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Acesso ilimitado</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Avaliação física gratuita</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Sem fidelização</li>
+            </ul>
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-primary mt-6 w-full">Quero este plano</a>
+          </div>
+          <div class="card p-6">
+            <h3 class="font-display text-lg font-bold text-club-primary">Plano Estudante</h3>
+            <p class="mt-3 font-display text-3xl font-bold text-club-primary">€18.00 <span class="text-sm font-normal text-gray-500">/ mês</span></p>
+            <p class="mt-2 text-sm text-gray-600">Mensalidade reduzida para estudantes até aos 23 anos.</p>
+            <ul class="mt-5 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Acesso ilimitado</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Comprovativo necessário</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Sem fidelização</li>
+            </ul>
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-secondary mt-6 w-full">Quero este plano</a>
+          </div>
+          <div class="card p-6">
+            <h3 class="font-display text-lg font-bold text-club-primary">Plano Família</h3>
+            <p class="mt-3 font-display text-3xl font-bold text-club-primary">€40.00 <span class="text-sm font-normal text-gray-500">/ mês</span></p>
+            <p class="mt-2 text-sm text-gray-600">Para dois membros do mesmo agregado familiar.</p>
+            <ul class="mt-5 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Dois utilizadores</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Avaliação física gratuita</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Acesso ilimitado</li>
+            </ul>
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-secondary mt-6 w-full">Quero este plano</a>
+          </div>
+          <div class="card p-6">
+            <h3 class="font-display text-lg font-bold text-club-primary">Plano Anual</h3>
+            <p class="mt-3 font-display text-3xl font-bold text-club-primary">€220 <span class="text-sm font-normal text-gray-500">/ ano</span></p>
+            <p class="mt-2 text-sm text-gray-600">Pagamento anual com desconto significativo (equiv. €18.33/mês).</p>
+            <ul class="mt-5 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> 10 meses pagos = 12</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> Sem renovação automática</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="h-4 w-4 mt-0.5 text-club-accent"></i> T-shirt do clube oferta</li>
+            </ul>
+            <a href="#" onclick="showPage('inscricao'); return false;" class="btn-secondary mt-6 w-full">Quero este plano</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aulas -->
+    <section class="bg-club-light/40 py-14">
+      <div class="container mx-auto max-w-7xl px-4">
+        <span class="eyebrow">Aulas de grupo</span>
+        <h2 class="section-title mt-2">Horário semanal</h2>
+        <p class="mt-3 max-w-2xl text-gray-600">Aulas incluídas em todos os planos. Vagas limitadas por aula.</p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Segunda</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3 border-b border-gray-100 pb-2"><div><p class="font-semibold text-club-primary">Treino Funcional</p><p class="text-xs text-gray-500">Hugo Vieira · 60 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">19:00</span></li>
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">Pilates</p><p class="text-xs text-gray-500">Ana Mendes · 60 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">20:00</span></li>
+            </ul>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Terça</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">HIIT</p><p class="text-xs text-gray-500">Rui Tavares · 45 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">19:00</span></li>
+            </ul>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Quarta</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">Pilates</p><p class="text-xs text-gray-500">Ana Mendes · 60 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">19:00</span></li>
+            </ul>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Quinta</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">Treino Funcional</p><p class="text-xs text-gray-500">Hugo Vieira · 60 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">19:00</span></li>
+            </ul>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Sexta</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">Cardio Express</p><p class="text-xs text-gray-500">Rui Tavares · 45 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">18:30</span></li>
+            </ul>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs uppercase tracking-widest text-club-accent">Sábado</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start justify-between gap-3"><div><p class="font-semibold text-club-primary">Pilates</p><p class="text-xs text-gray-500">Ana Mendes · 60 min</p></div><span class="rounded bg-club-primary px-2 py-1 text-xs font-semibold text-white">10:00</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PTs -->
+    <section class="py-14">
+      <div class="container mx-auto max-w-7xl px-4">
+        <span class="eyebrow">A equipa técnica</span>
+        <h2 class="section-title mt-2">Personal Trainers</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          <div class="card p-6">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="user" class="h-7 w-7"></i></div>
+            <h3 class="mt-4 font-display text-lg font-bold text-club-primary">Hugo Vieira</h3>
+            <p class="text-sm text-club-accent font-semibold">Treino funcional e força</p>
+            <p class="mt-3 text-sm text-gray-600">Licenciado em Educação Física, 10 anos de experiência em treino personalizado.</p>
+          </div>
+          <div class="card p-6">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="user" class="h-7 w-7"></i></div>
+            <h3 class="mt-4 font-display text-lg font-bold text-club-primary">Ana Mendes</h3>
+            <p class="text-sm text-club-accent font-semibold">Pilates e reabilitação</p>
+            <p class="mt-3 text-sm text-gray-600">Fisioterapeuta com especialização em Pilates clínico.</p>
+          </div>
+          <div class="card p-6">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="user" class="h-7 w-7"></i></div>
+            <h3 class="mt-4 font-display text-lg font-bold text-club-primary">Rui Tavares</h3>
+            <p class="text-sm text-club-accent font-semibold">Cardio e perda de peso</p>
+            <p class="mt-3 text-sm text-gray-600">PT certificado com foco em programas de emagrecimento sustentável.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: NOTÍCIAS ════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-noticias" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-10">
+        <span class="eyebrow">Atualidade</span>
+        <h1 class="section-title mt-2">Notícias do clube</h1>
+        <p class="mt-3 max-w-2xl text-gray-600">Resultados, eventos, formação e tudo o que se passa no GD Juncal.</p>
+      </header>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <a href="#" class="card block overflow-hidden ring-2 ring-club-accent/50 md:col-span-2 lg:col-span-3">
+          <div class="grid md:grid-cols-2">
+            <div class="aspect-[16/9] md:aspect-auto bg-gradient-to-br from-club-primary via-club-secondary to-club-primary flex items-center justify-center">
+              <i data-lucide="trophy" class="h-20 w-20 text-club-accent"></i>
+            </div>
+            <div class="p-6">
+              <span class="eyebrow">🏆 Conquista histórica</span>
+              <h3 class="mt-2 font-display text-2xl font-bold text-club-primary">BICAMPEÃS NACIONAIS — 1ª Divisão Feminina!</h3>
+              <p class="mt-2 text-sm text-gray-600">As nossas campeãs — Gabriela Feher, Tatiana Garnova, Júlia Leal e Caetana Soares — foram incansáveis. Por trás desta caminhada está o treinador Luís Sousa, cuja entrega e espírito inspirador foram fundamentais.</p>
+              <p class="mt-3 text-xs text-gray-400">26 de abril de 2026</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="card block overflow-hidden">
+          <div class="aspect-[16/9] bg-gradient-to-br from-club-primary to-club-secondary flex items-center justify-center"><i data-lucide="globe" class="h-12 w-12 text-club-accent"></i></div>
+          <div class="p-5">
+            <span class="eyebrow">Internacional</span>
+            <h3 class="mt-2 text-lg font-bold text-club-primary">Júlia Leal convocada para o WTT Feeder Prishtina</h3>
+            <p class="mt-2 text-sm text-gray-600">A atleta foi convocada para o WTT Feeder Sénior e o WTT Youth Contender, em Prishtina, Kosovo, de 22 a 31 de maio.</p>
+            <p class="mt-3 text-xs text-gray-400">18 de maio de 2026</p>
+          </div>
+        </a>
+
+        <a href="#" class="card block overflow-hidden">
+          <div class="aspect-[16/9] bg-gradient-to-br from-club-secondary to-club-primary flex items-center justify-center"><i data-lucide="award" class="h-12 w-12 text-club-accent"></i></div>
+          <div class="p-5">
+            <span class="eyebrow">Reconhecimento</span>
+            <h3 class="mt-2 text-lg font-bold text-club-primary">Voto de Louvor da Assembleia Municipal a Júlia Leal</h3>
+            <p class="mt-2 text-sm text-gray-600">A Assembleia Municipal da Praia da Vitória aprovou por unanimidade um Voto de Louvor à atleta, campeã nacional Sub-19 de ténis de mesa.</p>
+            <p class="mt-3 text-xs text-gray-400">11 de maio de 2026</p>
+          </div>
+        </a>
+
+        <a href="#" class="card block overflow-hidden">
+          <div class="aspect-[16/9] bg-gradient-to-br from-club-accent to-amber-600 flex items-center justify-center"><i data-lucide="medal" class="h-12 w-12 text-white"></i></div>
+          <div class="p-5">
+            <span class="eyebrow">Campeonato Nacional</span>
+            <h3 class="mt-2 text-lg font-bold text-club-primary">Atletas brilham nos Nacionais de Pares Jovens</h3>
+            <p class="mt-2 text-sm text-gray-600">Júlia Leal sagra-se Campeã Nacional de Pares Mistos Sub-17 e conquista bronze Sub-19. Caetana Soares e Carolina Sousa também medalham.</p>
+            <p class="mt-3 text-xs text-gray-400">12 de maio de 2026</p>
+          </div>
+        </a>
+
+        <a href="#" class="card block overflow-hidden">
+          <div class="aspect-[16/9] bg-gradient-to-br from-club-primary to-club-accent flex items-center justify-center"><i data-lucide="star" class="h-12 w-12 text-white"></i></div>
+          <div class="p-5">
+            <span class="eyebrow">Mundial</span>
+            <h3 class="mt-2 text-lg font-bold text-club-primary">Portugal em 17.º no Mundial de Equipas com Júlia Leal</h3>
+            <p class="mt-2 text-sm text-gray-600">Naquela que foi a sua estreia em Mundiais Seniores, Júlia somou uma vitória frente à Guatemala. Portugal terminou em 17.º.</p>
+            <p class="mt-3 text-xs text-gray-400">6 de maio de 2026</p>
+          </div>
+        </a>
+
+        <a href="#" class="card block overflow-hidden">
+          <div class="aspect-[16/9] bg-gradient-to-br from-club-secondary to-club-accent flex items-center justify-center"><i data-lucide="users" class="h-12 w-12 text-white"></i></div>
+          <div class="p-5">
+            <span class="eyebrow">Escolinha</span>
+            <h3 class="mt-2 text-lg font-bold text-club-primary">Rodrigo e Leo: atletas do mês com 100% de assiduidade</h3>
+            <p class="mt-2 text-sm text-gray-600">A direção homenageou os dois jovens atletas da escolinha pelo seu compromisso e presença em todos os treinos do mês de abril.</p>
+            <p class="mt-3 text-xs text-gray-400">7 de maio de 2026</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: MEDIA ═══════════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-media" class="page">
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-10">
+        <span class="eyebrow">Arquivo visual</span>
+        <h1 class="section-title mt-2">Galeria</h1>
+        <p class="mt-3 max-w-2xl text-gray-600">Fotografias e vídeos dos jogos, treinos, eventos e momentos do clube.</p>
+      </header>
+
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Jogos</h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-primary to-club-secondary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-secondary to-club-primary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-accent to-yellow-700 flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-club-primary/40"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-primary to-club-accent flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Formação</h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-secondary to-club-primary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-primary to-club-secondary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="mb-5 border-l-4 border-club-accent pl-3 font-display text-xl font-bold text-club-primary">Clube</h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-accent to-club-primary flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+          <div class="aspect-square rounded-lg bg-gradient-to-br from-club-primary to-club-accent flex items-center justify-center"><i data-lucide="image" class="h-12 w-12 text-white/40"></i></div>
+        </div>
+        <p class="mt-6 text-sm text-gray-500 italic">ⓘ Os ícones são marcadores de posição. Quando carregares fotos reais no painel admin, vão aparecer aqui automaticamente.</p>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: INSCRIÇÃO ═══════════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-inscricao" class="page">
+    <div class="container mx-auto max-w-3xl px-4 py-12">
+      <header class="mb-8 text-center">
+        <span class="eyebrow">Faz parte do clube</span>
+        <h1 class="section-title mt-2">Inscreve-te</h1>
+        <p class="mt-3 text-gray-600">Escolhe a modalidade. Em 48h úteis a direção entra em contacto contigo.</p>
+      </header>
+
+      <div class="flex justify-center gap-3 mb-8">
+        <button onclick="switchInscricao('tt')" id="tab-tt" class="btn-primary">🏓 Ténis de Mesa</button>
+        <button onclick="switchInscricao('gym')" id="tab-gym" class="btn-secondary"><i data-lucide="dumbbell" class="h-4 w-4"></i> Ginásio</button>
+      </div>
+
+      <!-- Form Ténis de Mesa -->
+      <form id="form-tt" class="card space-y-5 p-8" onsubmit="event.preventDefault(); document.getElementById('form-tt').style.display='none'; document.getElementById('done-msg').style.display='block';">
+        <h3 class="font-display text-xl font-bold text-club-primary">Inscrição no Ténis de Mesa</h3>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Nome do atleta *</label>
+          <input required class="w-full rounded border border-gray-200 px-3 py-2 text-sm" />
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div><label class="block text-sm font-semibold mb-1">Data de nascimento</label><input type="date" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" /></div>
+          <div><label class="block text-sm font-semibold mb-1">Telemóvel *</label><input required type="tel" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" /></div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Experiência</label>
+          <select class="w-full rounded border border-gray-200 px-3 py-2 text-sm">
+            <option>Nunca joguei</option>
+            <option>Iniciante</option>
+            <option>Intermédio</option>
+            <option>Avançado / federado</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Mensagem</label>
+          <textarea rows="3" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" placeholder="Tens alguma dúvida?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Submeter inscrição</button>
+      </form>
+
+      <!-- Form Ginásio (escondido) -->
+      <form id="form-gym" class="card space-y-5 p-8 hidden" onsubmit="event.preventDefault(); document.getElementById('form-gym').style.display='none'; document.getElementById('done-msg').style.display='block';">
+        <h3 class="font-display text-xl font-bold text-club-primary">Inscrição no Ginásio</h3>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Nome completo *</label>
+          <input required class="w-full rounded border border-gray-200 px-3 py-2 text-sm" />
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div><label class="block text-sm font-semibold mb-1">Email *</label><input required type="email" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" /></div>
+          <div><label class="block text-sm font-semibold mb-1">Telemóvel *</label><input required type="tel" class="w-full rounded border border-gray-200 px-3 py-2 text-sm" /></div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Plano de interesse</label>
+          <select class="w-full rounded border border-gray-200 px-3 py-2 text-sm">
+            <option>— Sem preferência —</option>
+            <option>Plano Sócio (€25/mês)</option>
+            <option>Plano Estudante (€18/mês)</option>
+            <option>Plano Família (€40/mês)</option>
+            <option>Plano Anual (€220/ano)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Mensagem</label>
+          <textarea rows="3" class="w-full rounded border border-gray-200 px-3 py-2 text-sm"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Submeter inscrição</button>
+      </form>
+
+      <!-- Confirmação -->
+      <div id="done-msg" class="card p-10 text-center hidden">
+        <i data-lucide="check-circle" class="h-12 w-12 mx-auto text-club-accent"></i>
+        <h2 class="mt-4 font-display text-2xl font-bold text-club-primary">Inscrição recebida!</h2>
+        <p class="mt-3 text-gray-600">A direção do clube vai contactar-te em breve. Obrigado por te juntares ao GD Juncal!</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════════════════════════════════════ -->
+  <!-- ═════════════════ PÁGINA: ADMIN PREVIEW ═══════════════ -->
+  <!-- ═════════════════════════════════════════════════════ -->
+  <section id="page-admin" class="page">
+    <div class="bg-club-light/40 py-3 border-b border-gray-200">
+      <div class="container mx-auto max-w-7xl px-4 text-xs text-gray-600 italic">
+        🔒 Pré-visualização do painel de administração — esta área no site real só fica acessível depois de fazeres login.
+      </div>
+    </div>
+    <div class="container mx-auto max-w-7xl px-4 py-12">
+      <header class="mb-8">
+        <p class="eyebrow">Administração</p>
+        <h1 class="section-title mt-2">Painel da direção</h1>
+        <p class="mt-2 text-gray-600">Visão geral do que está a acontecer no clube.</p>
+      </header>
+
+      <div class="mb-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="card flex items-center gap-4 p-5">
+          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="calendar" class="h-5 w-5"></i></span>
+          <div><p class="font-display text-2xl font-bold text-club-primary">2</p><p class="text-xs uppercase tracking-widest text-gray-500">Jogos agendados</p></div>
+        </div>
+        <div class="card flex items-center gap-4 p-5">
+          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="trophy" class="h-5 w-5"></i></span>
+          <div><p class="font-display text-2xl font-bold text-club-primary">3</p><p class="text-xs uppercase tracking-widest text-gray-500">Jogos terminados</p></div>
+        </div>
+        <div class="card flex items-center gap-4 p-5">
+          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="newspaper" class="h-5 w-5"></i></span>
+          <div><p class="font-display text-2xl font-bold text-club-primary">3</p><p class="text-xs uppercase tracking-widest text-gray-500">Notícias publicadas</p></div>
+        </div>
+        <div class="card flex items-center gap-4 p-5">
+          <span class="flex h-12 w-12 items-center justify-center rounded-full bg-club-primary text-club-accent"><i data-lucide="users" class="h-5 w-5"></i></span>
+          <div><p class="font-display text-2xl font-bold text-club-primary">5</p><p class="text-xs uppercase tracking-widest text-gray-500">Inscrições pendentes</p></div>
+        </div>
+      </div>
+
+      <h2 class="mb-4 font-display text-lg font-bold text-club-primary">Ações rápidas</h2>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+        <div class="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-between"><span class="flex items-center gap-3 text-sm font-semibold text-club-primary"><i data-lucide="calendar" class="h-4 w-4"></i> Adicionar novo jogo</span><i data-lucide="arrow-right" class="h-4 w-4 text-gray-400"></i></div>
+        <div class="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-between"><span class="flex items-center gap-3 text-sm font-semibold text-club-primary"><i data-lucide="newspaper" class="h-4 w-4"></i> Escrever notícia</span><i data-lucide="arrow-right" class="h-4 w-4 text-gray-400"></i></div>
+        <div class="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-between"><span class="flex items-center gap-3 text-sm font-semibold text-club-primary"><i data-lucide="image" class="h-4 w-4"></i> Carregar fotos</span><i data-lucide="arrow-right" class="h-4 w-4 text-gray-400"></i></div>
+        <div class="rounded-lg border border-gray-200 bg-white p-4 flex items-center justify-between"><span class="flex items-center gap-3 text-sm font-semibold text-club-primary"><i data-lucide="users" class="h-4 w-4"></i> Ver inscrições</span><i data-lucide="arrow-right" class="h-4 w-4 text-gray-400"></i></div>
+      </div>
+
+      <h2 class="mb-4 font-display text-lg font-bold text-club-primary">Jogos recentes</h2>
+      <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <table class="clean">
+          <thead><tr><th>Data</th><th>Jogo</th><th>Resultado</th><th>Estado</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>29/05/2026</td><td>GD Juncal vs GD Toulões</td><td>—</td><td><span class="badge bg-blue-100 text-blue-700">Agendado</span></td><td class="text-right text-sm text-club-primary font-semibold">Editar →</td></tr>
+            <tr><td>24/05/2026</td><td>GD Juncal Sub-15 vs CTM Distrital</td><td>—</td><td><span class="badge bg-blue-100 text-blue-700">Agendado</span></td><td class="text-right text-sm text-club-primary font-semibold">Editar →</td></tr>
+            <tr><td>17/05/2026</td><td>GD Juncal vs CTM Mirandela (Fem.)</td><td class="font-bold">1 — 4</td><td><span class="badge bg-emerald-100 text-emerald-700">Terminado</span></td><td class="text-right text-sm text-club-primary font-semibold">Editar →</td></tr>
+            <tr><td>15/05/2026</td><td>GD Juncal vs CTM Marinhense (Masc.)</td><td class="font-bold">4 — 2</td><td><span class="badge bg-emerald-100 text-emerald-700">Terminado</span></td><td class="text-right text-sm text-club-primary font-semibold">Editar →</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+
+  <!-- ═════════ FOOTER ═════════ -->
+  <footer class="bg-club-primary text-white mt-16">
+    <div class="container mx-auto max-w-7xl grid gap-10 px-4 py-12 md:grid-cols-4">
+      <div>
+        <div class="mb-3 inline-block rounded bg-white p-2">
+          <svg viewBox="0 0 200 110" class="h-20 w-36">
+            <defs>
+              <radialGradient id="leftGlobeF" cx="40%" cy="40%" r="65%">
+                <stop offset="0%" stop-color="#FFF0D6"/>
+                <stop offset="55%" stop-color="#FFD08A"/>
+                <stop offset="100%" stop-color="#F59433"/>
+              </radialGradient>
+              <radialGradient id="rightGlobeF" cx="38%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#FFD78A"/>
+                <stop offset="55%" stop-color="#F97316"/>
+                <stop offset="100%" stop-color="#D6352A"/>
+              </radialGradient>
+              <clipPath id="rectClipF">
+                <rect x="10" y="28" width="160" height="72" rx="4"/>
+              </clipPath>
+            </defs>
+
+            <!-- Fundo branco do retângulo -->
+            <rect x="10" y="28" width="160" height="72" rx="4" fill="#FFFCF5"/>
+
+            <!-- Globo esquerdo CONFINADO ao retângulo -->
+            <g clip-path="url(#rectClipF)" opacity="0.6">
+              <circle cx="30" cy="80" r="26" fill="url(#leftGlobeF)"/>
+              <ellipse cx="30" cy="80" rx="26" ry="9" fill="none" stroke="#fff" stroke-width="0.8"/>
+              <ellipse cx="30" cy="80" rx="17" ry="26" fill="none" stroke="#fff" stroke-width="0.5"/>
+              <ellipse cx="30" cy="80" rx="9" ry="26" fill="none" stroke="#fff" stroke-width="0.6"/>
+              <line x1="4" y1="80" x2="56" y2="80" stroke="#fff" stroke-width="0.6"/>
+              <line x1="30" y1="54" x2="30" y2="106" stroke="#fff" stroke-width="0.6"/>
+            </g>
+
+            <!-- Moldura laranja -->
+            <rect x="10" y="28" width="160" height="72" rx="4" fill="none" stroke="#F4A02E" stroke-width="2.6"/>
+
+            <text x="44" y="44" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#E8782F" font-weight="500">centro social</text>
+            <text x="36" y="74" font-family="Georgia, serif" font-style="italic" font-weight="800" font-size="28" fill="#E8782F">juncal</text>
+            <text x="36" y="88" font-family="Arial, sans-serif" font-weight="900" font-size="11" fill="#1D4ED8" letter-spacing="0.4">GRUPO DESPORTIVO</text>
+            <text x="102" y="96" font-family="Georgia, serif" font-style="italic" font-size="5" fill="#9CA3AF">fundado em 13-2-2003</text>
+
+            <!-- Globo direito (sai do canto superior direito) -->
+            <g>
+              <circle cx="172" cy="24" r="24" fill="url(#rightGlobeF)"/>
+              <ellipse cx="172" cy="24" rx="24" ry="8" fill="none" stroke="#fff" stroke-width="0.9"/>
+              <ellipse cx="172" cy="24" rx="16" ry="24" fill="none" stroke="#fff" stroke-width="0.6"/>
+              <ellipse cx="172" cy="24" rx="8" ry="24" fill="none" stroke="#fff" stroke-width="0.7"/>
+              <line x1="148" y1="24" x2="196" y2="24" stroke="#fff" stroke-width="0.7"/>
+              <line x1="172" y1="0" x2="172" y2="48" stroke="#fff" stroke-width="0.7"/>
+            </g>
+          </svg>
+        </div>
+        <p class="text-sm text-white/80">Tradição, mérito e comunidade.</p>
+        <p class="mt-3 text-xs text-white/60">Fundado em 13 de fevereiro de 2003</p>
+        <p class="mt-1 text-xs text-club-accent font-semibold">🏆 Bicampeões Nacionais Femininos</p>
+      </div>
+      <div>
+        <h4 class="mb-3 text-sm font-semibold uppercase tracking-widest text-club-accent">Modalidades</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" onclick="showPage('competicoes'); return false;" class="text-white/80 hover:text-club-accent">Ténis de Mesa</a></li>
+          <li><a href="#" onclick="showPage('equipas'); return false;" class="text-white/80 hover:text-club-accent">Equipas</a></li>
+          <li><a href="#" onclick="showPage('ginasio'); return false;" class="text-white/80 hover:text-club-accent">Ginásio</a></li>
+          <li><a href="#" onclick="showPage('jogos'); return false;" class="text-white/80 hover:text-club-accent">Jogos & Resultados</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-3 text-sm font-semibold uppercase tracking-widest text-club-accent">Inscreve-te</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" onclick="showPage('inscricao'); return false;" class="text-white/80 hover:text-club-accent">Ténis de Mesa</a></li>
+          <li><a href="#" onclick="showPage('inscricao'); return false;" class="text-white/80 hover:text-club-accent">Ginásio</a></li>
+          <li><a href="#" onclick="showPage('noticias'); return false;" class="text-white/80 hover:text-club-accent">Notícias do clube</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-3 text-sm font-semibold uppercase tracking-widest text-club-accent">Contactos</h4>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-start gap-2 text-white/80">
+            <i data-lucide="map-pin" class="h-4 w-4 mt-0.5 flex-shrink-0"></i>
+            <span>Pavilhão Desportivo do Juncal<br/>Canada da Água, n.º 1<br/>9760-408 Juncal — Praia da Vitória<br/>Ilha Terceira, Açores</span>
+          </li>
+          <li class="flex items-center gap-2 text-white/80"><i data-lucide="mail" class="h-4 w-4"></i> gdcsjuncal@gmail.com</li>
+          <li><a href="https://gdcsjuncal.pt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white/80 hover:text-club-accent"><i data-lucide="globe" class="h-4 w-4"></i> gdcsjuncal.pt</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=100077718830092" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white/80 hover:text-club-accent"><i data-lucide="facebook" class="h-4 w-4"></i> Facebook</a></li>
+          <li><a href="https://www.instagram.com/gdcs_juncal" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white/80 hover:text-club-accent"><i data-lucide="instagram" class="h-4 w-4"></i> @gdcs_juncal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="container mx-auto max-w-7xl flex flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/60 md:flex-row">
+        <p>© 2026 Grupo Desportivo Centro Social do Juncal (GDCSJ). Todos os direitos reservados.</p>
+        <p>Site institucional · Versão 1.0 (pré-visualização)</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═════════ SCRIPTS ═════════ -->
+  <script>
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const el = document.getElementById('page-' + name);
+      if (el) el.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      document.querySelectorAll('[data-nav]').forEach(a => {
+        a.classList.toggle('active-page', a.dataset.nav === name);
+      });
+      lucide.createIcons();
+    }
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('hidden');
+    }
+
+    function switchInscricao(type) {
+      const tt = document.getElementById('form-tt');
+      const gym = document.getElementById('form-gym');
+      const done = document.getElementById('done-msg');
+      done.classList.add('hidden'); done.style.display = 'none';
+      if (type === 'tt') {
+        tt.classList.remove('hidden'); tt.style.display = 'block';
+        gym.classList.add('hidden'); gym.style.display = 'none';
+        document.getElementById('tab-tt').className = 'btn-primary';
+        document.getElementById('tab-gym').className = 'btn-secondary';
+      } else {
+        gym.classList.remove('hidden'); gym.style.display = 'block';
+        tt.classList.add('hidden'); tt.style.display = 'none';
+        document.getElementById('tab-tt').className = 'btn-secondary';
+        document.getElementById('tab-gym').className = 'btn-primary';
+      }
+      lucide.createIcons();
+    }
+
+    // Inicializar ícones e marca página inicial
+    lucide.createIcons();
+    document.querySelectorAll('[data-nav]').forEach(a => {
+      if (a.dataset.nav === 'home') a.classList.add('active-page');
+    });
+  </script>
+
+</body>
+</html>
